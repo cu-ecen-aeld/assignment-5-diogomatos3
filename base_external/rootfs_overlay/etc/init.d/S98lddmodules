@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# Load the 'scull' module at startup
+start() {
+    cd /lib/modules/6.1.44/extra
+
+    echo "Loading scull module..."
+    modprobe scull
+    # Load the 'faulty' module at startup
+    echo "Loading faulty module..."
+    modprobe faulty
+    # Load the 'hello' module at startup
+    echo "Loading hello module..."
+    modprobe hello
+}
+
+# Unload the 'scull' module at shutdown
+stop() {
+    cd /lib/modules/6.1.44/extra
+    
+    echo "Unloading scull module..."
+    rmmod scull
+    # Unload the 'faulty' module at shutdown
+    echo "Unloading faulty module..."
+    rmod faulty
+    # Unload the 'hello' module at shutdown
+    echo "Unloading hello module..."
+    rmmod hello
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac

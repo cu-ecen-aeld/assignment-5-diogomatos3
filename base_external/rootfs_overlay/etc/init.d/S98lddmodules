@@ -22,7 +22,7 @@ stop() {
     rmmod scull
     # Unload the 'faulty' module at shutdown
     echo "Unloading faulty module..."
-    rmod faulty
+    rmmod faulty
     # Unload the 'hello' module at shutdown
     echo "Unloading hello module..."
     rmmod hello
